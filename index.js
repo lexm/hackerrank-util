@@ -33,6 +33,19 @@ program
         filePath = filename;
       }
       console.log(filePath);
+      let scriptData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      let { pathArray, message, solutionName, allCode} = scriptData;
+      let fullPath = makeCodeDir(repo, pathArray);
+      fs.writeFile(fullPath + solutionName, allCode, function(err){
+        if(err) throw err;
+        console.log('File ' + solutionName + ' written');
+        // exec('cd ' + fullPath + ';git add ' + filename, function(error) {
+        //   if(error) console.error(error);
+        //   exec('cd ' + fullPath + ';git commit -m "' + message + '"', function(error) {
+        //     if(error) console.error(error);
+        //   });
+        // });
+      });
       if(program.add) console.log('add option');
       if(program.commit) console.log('commit option');
       if(program.no_add) console.log('no_add option');
