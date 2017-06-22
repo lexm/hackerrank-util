@@ -7,19 +7,16 @@
 		"url": "https://github.com/lexm/hackerrank-util/issues"
 	},
 	"license": "ISC",
+	"author": "Lex Myers",
+	"main": "index.js",
 	"bin": {
 		"hyank": "./index.js"
 	},
-	"author": "Lex Myers",
-	"main": "index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/lexm/hackerrank-util.git"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"dependencies": {
-		"commander": "^2.9.0"
 	}
 }
