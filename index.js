@@ -1,2 +1,16 @@
 #!/usr/bin/env node
-console.log('testing');
+const program = require('commander');
+
+program
+  .version('0.0.1')
+  .arguments('<filename>')
+    .option('-a, --add', 'add solution to git without performing commit')
+    .option('-c, --commit', 'add and commit solution with git (default)')
+    .option('-n, --no_add', 'refrain from running git add')
+    .action(function(filename) {
+      console.log(`filename: ${filename}`);
+      if(program.add) console.log('add option');
+      if(program.commit) console.log('commit option');
+      if(program.no_add) console.log('no_add option');
+    })
+    .parse(process.argv);

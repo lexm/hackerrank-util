@@ -7,11 +7,11 @@
 		"url": "https://github.com/lexm/hackerrank-util/issues"
 	},
 	"license": "ISC",
+	"author": "Lex Myers",
+	"main": "index.js",
 	"bin": {
 		"hyank": "./index.js"
 	},
-	"author": "Lex Myers",
-	"main": "index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/lexm/hackerrank-util.git"
