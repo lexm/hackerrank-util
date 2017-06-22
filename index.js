@@ -12,7 +12,13 @@ program
     .option('-c, --commit', 'add and commit solution with git (default)')
     .option('-n, --no_add', 'refrain from running git add')
     .action(function(filename) {
-      console.log(`filename: ${filename}`);
+      var filePath;
+      if(filename.indexOf('/') === -1) {
+        filePath = process.cwd() + '/' + filename;
+      } else {
+        filePath = filename;
+      }
+      console.log(filePath);
       if(program.add) console.log('add option');
       if(program.commit) console.log('commit option');
       if(program.no_add) console.log('no_add option');
