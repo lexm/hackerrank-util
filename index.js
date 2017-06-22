@@ -39,17 +39,21 @@ program
       console.log(`message: ${message}`);
       console.log(`filename: ${filename}`);
       console.log(`allCode: ${allCode}`);
-      // let fullPath = makeCodeDir(repo, pathArray);
-      // fs.writeFile(fullPath + filename, allCode, function(err){
-      //   if(err) throw err;
-        // console.log('File ' + filename + ' written');
-        // exec('cd ' + fullPath + ';git add ' + filename, function(error) {
-        //   if(error) console.error(error);
-        //   exec('cd ' + fullPath + ';git commit -m "' + message + '"', function(error) {
-        //     if(error) console.error(error);
-        //   });
-        // });
-      // });
+      let fullPath = makeCodeDir(repo, pathArray);
+      fs.writeFile(fullPath + filename, allCode, function(err){
+        if(err) throw err;
+        console.log('File ' + filename + ' written');
+        if(!program.no_add) {
+          exec('cd ' + fullPath + ';git add ' + filename, function(error) {
+            if(error) console.error(error);
+            if(!program.add) {
+                exec('cd ' + fullPath + ';git commit -m "' + message + '"', function(error) {
+                  if(error) console.error(error);
+                });
+            }
+          });
+        }
+      });
       if(program.add) console.log('add option');
       if(program.commit) console.log('commit option');
       if(program.no_add) console.log('no_add option');
