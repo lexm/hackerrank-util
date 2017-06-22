@@ -9,7 +9,7 @@
 	"license": "ISC",
   "bin": {
     "hyank": "./index.js"
-  }
+  },
 	"author": "Lex Myers",
 	"main": "index.js",
 	"repository": {
