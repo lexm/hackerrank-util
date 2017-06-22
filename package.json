@@ -1,0 +1,19 @@
+{
+  "name": "hackerrank-util",
+  "version": "0.0.1",
+  "description": "Command line utility for processing downloads created by HackerYank user script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lexm/hackerrank-util.git"
+  },
+  "author": "Lex Myers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lexm/hackerrank-util/issues"
+  },
+  "homepage": "https://github.com/lexm/hackerrank-util#readme"
+}
