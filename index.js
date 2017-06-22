@@ -35,10 +35,6 @@ program
       console.log(filePath);
       let scriptData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
       let { pathArray, message, filename, allCode} = scriptData;
-      console.log(`pathArray: ${pathArray}`);
-      console.log(`message: ${message}`);
-      console.log(`filename: ${filename}`);
-      console.log(`allCode: ${allCode}`);
       let fullPath = makeCodeDir(repo, pathArray);
       fs.writeFile(fullPath + filename, allCode, function(err){
         if(err) throw err;
@@ -54,8 +50,5 @@ program
           });
         }
       });
-      if(program.add) console.log('add option');
-      if(program.commit) console.log('commit option');
-      if(program.no_add) console.log('no_add option');
     })
     .parse(process.argv);
