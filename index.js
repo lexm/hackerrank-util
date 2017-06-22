@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 const program = require('commander');
+const fs = require('fs');
+const exec = require('child_process').exec;
+const home = process.env.HOME;
+const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 
 program
   .version('0.0.1')
