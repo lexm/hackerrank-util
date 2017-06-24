@@ -1,5 +1,7 @@
 'use strict';
 
+const fs = require('fs');
+
 exports.makeCodeDir = function(repo, pathArray) {
   let codeDir = repo;
   while(true) {
