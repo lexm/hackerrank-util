@@ -5,43 +5,29 @@ var eslint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 
 var eslintRules = {
-  'rules': {
-    'no-console': 0,
-    'indent': [
-      2,
-      2
-    ],
-    'quotes': [
-      2,
-      'single'
-    ],
-    'linebreak-style': [
-      2,
-      'unix'
-    ],
-    'semi': [
-      2,
-      'always'
-    ]
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {"impliedStrict": true}
   },
-  'env': {
-    'es6': true,
-    'node': true,
-    'browser': true
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "node": true,
+    "es6": true
   },
-  'globals': {
-    'describe': false,
-    'it': false,
-    'beforeEach': false,
-    'afterEach': false,
-    'before': false,
-    'after': false
-  },
-  'ecmaFeatures': {
-    'modules': true,
-    'experimentalObjectRestSpread': true
-  },
-  'extends': 'eslint:recommended'
+  "rules": {
+    "eqeqeq": ["error", "always"],
+    "no-template-curly-in-string": "error",
+    "no-console": "off",
+    "no-undefined": "off",
+    "indent": ["error", 2],
+    "quotes": ["warn", "single", {"allowTemplateLiterals": true}],
+    "no-multi-spaces": ["warn", {"exceptions": { "VariableDeclarator": true }}],
+    "no-trailing-spaces": "warn",
+    "new-cap": "warn",
+    "no-redeclare": ["error", { "builtinGlobals": true }]
+  }
 };
 
 var path = ['*.js', 'test/*.js'];
