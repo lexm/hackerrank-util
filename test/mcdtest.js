@@ -17,6 +17,6 @@ describe('testing makeCodeDir', function() {
   });
   it('should be able to create new directories', function() {
     var newDir = makeCodeDir('./hackerrank-repo/', ['Python', 'Strings']);
-    expect(newDir).to.equal('./Python/Strings');
+    expect(newDir).to.equal('./hackerrank-repo/Python/Strings');
   })
 })
