@@ -11,7 +11,11 @@ describe('makeCodeDir', function() {
   before(function(done) {
     mock({
       'hackerrank-repo': {
-        '.git': {}
+        '.git': {},
+        'Algorithms': {},
+        'Data_Structures': {
+          'Arrays': {}
+        }
       }
     });
     done();
@@ -23,14 +27,24 @@ describe('makeCodeDir', function() {
   describe('when dirs don\'t exist', function() {
     it('should not have created the path yet', function(done) {
       var fn1 = fs.access('./hackerrank-repo/Python/Strings/', function(err){
-        expect(err.code).to.equal('ENOENT');
-        done();
+        if(err) {
+          expect(err.code).to.equal('ENOENT');
+          done();
+        } else {
+          expect(err).to.not.be.null;
+          done();
+        }
       });
     });
     it('should not have created first one either', function(done) {
       var fn1 = fs.access('./hackerrank-repo/Python/', function(err){
-        expect(err.code).to.equal('ENOENT');
-        done();
+        if(err) {
+          expect(err.code).to.equal('ENOENT');
+          done();
+        } else {
+          expect(err).to.not.be.null;
+          done();
+        }
       });
     });
     it('should return the created directory', function(done) {
@@ -46,6 +60,42 @@ describe('makeCodeDir', function() {
     })
     it('should have created second-level dir', function(done) {
       fs.access('./hackerrank-repo/Python/Strings/', function(err) {
+        expect(err).to.be.null;
+        done();
+      });
+    });
+  });
+  describe('when only top dir exists', function() {
+    it('should not have created the path yet', function(done) {
+      var fn1 = fs.access('./hackerrank-repo/Algorithms/Strings/', function(err){
+        if(err) {
+          expect(err.code).to.equal('ENOENT');
+          done();
+        } else {
+          expect(err).to.not.be.null;
+          done();
+        }
+      });
+    });
+    it('should have created first dir already there', function(done) {
+      var fn1 = fs.access('./hackerrank-repo/Algorithms/', function(err){
+        expect(err).to.be.null;
+        done();
+      });
+    });
+    it('should return the created directory', function(done) {
+      var newDir = makeCodeDir('./hackerrank-repo/', ['Algorithms', 'Warmup']);
+      expect(newDir).to.equal('./hackerrank-repo/Algorithms/Warmup/');
+      done();
+    });
+    it('should have created first-level dir', function(done) {
+      fs.access('./hackerrank-repo/Algorithms/', function(err) {
+        expect(err).to.be.null;
+        done();
+      });
+    })
+    it('should have created second-level dir', function(done) {
+      fs.access('./hackerrank-repo/Algorithms/Warmup/', function(err) {
         expect(err).to.be.null;
         done();
       });
