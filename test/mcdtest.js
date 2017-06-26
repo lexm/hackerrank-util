@@ -95,4 +95,23 @@ describe('makeCodeDir', function() {
       });
     });
   });
+  describe('when both dirs exist', function() {
+    it('should have created first dir already', function(done) {
+      var fn1 = fs.access('./hackerrank-repo/Data_Structures/', function(err){
+        expect(err).to.be.null;
+        done();
+      });
+    });
+    it('should have created second dir already', function(done) {
+      var fn1 = fs.access('./hackerrank-repo/Data_Structures/Arrays/', function(err){
+        expect(err).to.be.null;
+        done();
+      });
+    });
+    it('should return the created directory', function(done) {
+      var newDir = makeCodeDir('./hackerrank-repo/', ['Data_Structures', 'Arrays']);
+      expect(newDir).to.equal('./hackerrank-repo/Data_Structures/Arrays/');
+      done();
+    });
+  });
 });
