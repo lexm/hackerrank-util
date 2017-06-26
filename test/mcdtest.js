@@ -21,6 +21,12 @@ describe('makeCodeDir', function() {
     done();
   });
   describe('when dirs don\'t exist', function() {
+    it('should not have created first one yet', function(done) {
+      var fn1 = fs.access('./hackerrank-repo/Python/', function(err){
+        expect(err.code).to.equal('ENOENT');
+        done();
+      });
+    });
     it('should return the created directory', function(done) {
       var newDir = makeCodeDir('./hackerrank-repo/', ['Python', 'Strings']);
       expect(newDir).to.equal('./hackerrank-repo/Python/Strings/');
