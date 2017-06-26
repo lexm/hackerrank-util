@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const expect = require('chai').expect;
-const mcd = require(__dirname + '/../makedir.js');
+const mcd = require(__dirname + '/../lib/makedir.js');
 const makeCodeDir = mcd.makeCodeDir;
 const mock = require('mock-fs');
 
