@@ -19,22 +19,24 @@ describe('makeCodeDir', function() {
   after(function(done) {
     mock.restore();
     done();
-  })
-  it('should return the created directory', function(done) {
-    var newDir = makeCodeDir('./hackerrank-repo/', ['Python', 'Strings']);
-    expect(newDir).to.equal('./hackerrank-repo/Python/Strings/');
-    done();
   });
-  it('should have created first-level dir', function(done) {
-    fs.access('./hackerrank-repo/Python/', function(err) {
-      expect(err).to.be.null;
+  describe('when dirs don\'t exist', function() {
+    it('should return the created directory', function(done) {
+      var newDir = makeCodeDir('./hackerrank-repo/', ['Python', 'Strings']);
+      expect(newDir).to.equal('./hackerrank-repo/Python/Strings/');
       done();
     });
-  })
-  it('should have created second-level dir', function(done) {
-    fs.access('./hackerrank-repo/Python/Strings/', function(err) {
-      expect(err).to.be.null;
-      done();
+    it('should have created first-level dir', function(done) {
+      fs.access('./hackerrank-repo/Python/', function(err) {
+        expect(err).to.be.null;
+        done();
+      });
+    })
+    it('should have created second-level dir', function(done) {
+      fs.access('./hackerrank-repo/Python/Strings/', function(err) {
+        expect(err).to.be.null;
+        done();
+      });
     });
-  })
+  });
 });
