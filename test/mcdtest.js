@@ -1,13 +1,13 @@
 'use strict';
 
-
+const fs = require('fs');
 const expect = require('chai').expect;
 const mcd = require(__dirname + '/../makedir.js');
 const makeCodeDir = mcd.makeCodeDir;
 const mock = require('mock-fs');
 
 
-describe('testing makeCodeDir', function() {
+describe('makeCodeDir', function() {
   before(function(done) {
     mock({
       'hackerrank-repo': {
@@ -20,8 +20,21 @@ describe('testing makeCodeDir', function() {
     mock.restore();
     done();
   })
-  it('should be able to create new directories', function() {
+  it('should return the created directory', function(done) {
     var newDir = makeCodeDir('./hackerrank-repo/', ['Python', 'Strings']);
     expect(newDir).to.equal('./hackerrank-repo/Python/Strings/');
+    done();
   });
+  it('should have created first-level dir', function(done) {
+    fs.access('./hackerrank-repo/Python/', function(err) {
+      expect(err).to.be.null;
+      done();
+    });
+  })
+  it('should have created second-level dir', function(done) {
+    fs.access('./hackerrank-repo/Python/Strings/', function(err) {
+      expect(err).to.be.null;
+      done();
+    });
+  })
 });
