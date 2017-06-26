@@ -77,7 +77,7 @@ describe('makeCodeDir', function() {
         }
       });
     });
-    it('should have created first dir already there', function(done) {
+    it('should have created first dir already', function(done) {
       var fn1 = fs.access('./hackerrank-repo/Algorithms/', function(err){
         expect(err).to.be.null;
         done();
@@ -88,13 +88,7 @@ describe('makeCodeDir', function() {
       expect(newDir).to.equal('./hackerrank-repo/Algorithms/Warmup/');
       done();
     });
-    it('should have created first-level dir', function(done) {
-      fs.access('./hackerrank-repo/Algorithms/', function(err) {
-        expect(err).to.be.null;
-        done();
-      });
-    })
-    it('should have created second-level dir', function(done) {
+    it('should have created new second-level dir', function(done) {
       fs.access('./hackerrank-repo/Algorithms/Warmup/', function(err) {
         expect(err).to.be.null;
         done();
