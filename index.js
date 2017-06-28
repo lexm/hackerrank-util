@@ -21,13 +21,6 @@ program
   .option('-c, --commit', 'add and commit solution with git (default)')
   .option('-n, --no_add', 'refrain from running git add')
   .action(function(downloadName) {
-    // var filePath;
-    // if(downloadName.indexOf('/') === -1) {
-    //   filePath = process.cwd() + '/' + downloadName;
-    // } else {
-    //   filePath = downloadName;
-    // }
-    // console.log(filePath);
     let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
     let { pathArray, message, filename, allCode} = scriptData;
     let fullPath = makeCodeDir(repo, pathArray);
