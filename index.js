@@ -5,14 +5,7 @@ const exec = require('child_process').exec;
 const home = process.env.HOME;
 const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 const makeCodeDir = require(__dirname + '/lib/makedir').makeCodeDir;
-
-const fillPath = function(download) {
-  if(download.indexOf('/') === -1) {
-    return process.cwd() + '/' + download;
-  } else {
-    return download;
-  }
-}
+const fillPath = require(__dirname + '/lib/fillpath').fillPath;
 
 program
   .version('0.0.1')
