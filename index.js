@@ -5,6 +5,7 @@ const exec = require('child_process').exec;
 const home = process.env.HOME;
 const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 const makeCodeDir = require(__dirname + '/lib/makedir').makeCodeDir;
+const fillPath = require(__dirname + '/lib/fillpath').fillPath;
 
 program
   .version('0.0.1')
@@ -13,14 +14,7 @@ program
   .option('-c, --commit', 'add and commit solution with git (default)')
   .option('-n, --no_add', 'refrain from running git add')
   .action(function(downloadName) {
-    var filePath;
-    if(downloadName.indexOf('/') === -1) {
-      filePath = process.cwd() + '/' + downloadName;
-    } else {
-      filePath = downloadName;
-    }
-    console.log(filePath);
-    let scriptData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
     let { pathArray, message, filename, allCode} = scriptData;
     let fullPath = makeCodeDir(repo, pathArray);
     fs.writeFile(fullPath + filename, allCode, function(err){
