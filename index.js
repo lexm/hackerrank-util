@@ -14,6 +14,15 @@ const commitCode = function(path, message) {
   });
 }
 
+const addCode = function(path, message, source, no_commit) {
+  exec('cd ' + path + ';git add ' + source, function(error) {
+    if(error) console.error(error);
+    if(!no_commit) {
+      commitCode(path, message);
+    }
+  });
+}
+
 program
   .version('0.0.1')
   .arguments('<downloadName>')
@@ -28,15 +37,13 @@ program
       if(err) throw err;
       console.log('File ' + filename + ' written');
       if(!program.no_add) {
-        exec('cd ' + fullPath + ';git add ' + filename, function(error) {
-          if(error) console.error(error);
-          if(!program.add) {
-            commitCode(fullPath, message);
-            // exec('cd ' + fullPath + ';git commit -m "' + message + '"', function(error) {
-            //   if(error) console.error(error);
-            // });
-          }
-        });
+        addCode(fullPath, message, filename, program.add);
+        // exec('cd ' + fullPath + ';git add ' + filename, function(error) {
+        //   if(error) console.error(error);
+        //   if(!program.add) {
+        //     commitCode(fullPath, message);
+        //   }
+        // });
       }
     });
   })
