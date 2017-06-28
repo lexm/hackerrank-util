@@ -10,6 +10,7 @@ const fillPath = require(__dirname + '/lib/fillpath').fillPath;
 const commitCode = function(path, message) {
   exec('cd ' + path + ';git commit -m "' + message + '"', function(error) {
     if(error) console.error(error);
+    console.log('committed: ' + message);
   });
 }
 
