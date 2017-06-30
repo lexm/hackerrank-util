@@ -45,12 +45,6 @@ program
       console.log('File ' + filename + ' written');
       if(!program.no_add) {
         addCode(fullPath, message, filename, program.add);
-        // exec('cd ' + fullPath + ';git add ' + filename, function(error) {
-        //   if(error) console.error(error);
-        //   if(!program.add) {
-        //     commitCode(fullPath, message);
-        //   }
-        // });
       }
     });
   })
