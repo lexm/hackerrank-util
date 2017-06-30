@@ -17,27 +17,31 @@ const commitCode = function(path, message) {
   });
 }
 
-const addCode = function(path, message, source, no_commit) {
-  exec('cd ' + path + ';git add ' + source, function(error) {
+const addCode = function(scriptData, callback) {
+  exec('cd ' + scriptData.fullPath + ';git add ' + scriptData.filename, function(error) {
     if(error) {
       console.error(error);
     } else {
-      console.log('added: ' + source);
-      if(!no_commit) {
-        commitCode(path, message);
+      console.log('added: ' + scriptData.filename);
+      if(!scriptData.add) {
+        callback(scriptData.fullPath, scriptData.message)
       }
     }
   });
 }
 
-const writeCodeFile = function(path, message, filename, allCode, noAdd, justAdd) {
-  fs.writeFile(path + filename, allCode, function(err){
+const writeCodeFile = function(scriptData, callback) {
+  fs.writeFile(scriptData.fullPath + scriptData.filename, scriptData.allCode, function(err){
     if(err) throw err;
-    console.log('File ' + filename + ' written');
-    if(!noAdd) {
-      addCode(path, message, filename, justAdd);
-    }
+    console.log('File ' + scriptData.filename + ' written');
+    callback();
   });
+}
+
+const getScriptData = function(downloadName) {
+  let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
+  scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
+  return scriptData;
 }
 
 program
@@ -47,9 +51,11 @@ program
   .option('-c, --commit', 'add and commit solution with git (default)')
   .option('-n, --no_add', 'refrain from running git add')
   .action(function(downloadName) {
-    let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
-    let { pathArray, message, filename, allCode} = scriptData;
-    let fullPath = makeCodeDir(repo, pathArray);
-    writeCodeFile(fullPath, message, filename, allCode, program.no_add, program.add);
+    const scriptData = getScriptData(downloadName);
+    writeCodeFile(scriptData, function() {
+      if(!scriptData.no_add) {
+        addCode(scriptData, commitCode);
+      }
+    });
   })
   .parse(process.argv);
