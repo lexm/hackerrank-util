@@ -17,25 +17,28 @@ const commitCode = function(path, message) {
   });
 }
 
-const addCode = function(path, message, source, no_commit) {
-  exec('cd ' + path + ';git add ' + source, function(error) {
+const addCode = function(scriptData) {
+// const addCode = function(path, message, source, no_commit) {
+  exec('cd ' + scriptData.fullPath + ';git add ' + scriptData.filename, function(error) {
     if(error) {
       console.error(error);
     } else {
-      console.log('added: ' + source);
-      if(!no_commit) {
-        commitCode(path, message);
+      console.log('added: ' + scriptData.filename);
+      if(!scriptData.add) {
+        commitCode(scriptData.fullPath, scriptData.message);
       }
     }
   });
 }
 
-const writeCodeFile = function(path, message, filename, allCode, noAdd, justAdd) {
-  fs.writeFile(path + filename, allCode, function(err){
+const writeCodeFile = function(scriptData) {
+// const writeCodeFile = function(path, message, filename, allCode, noAdd, justAdd) {
+  fs.writeFile(scriptData.fullPath + scriptData.filename, scriptData.allCode, function(err){
     if(err) throw err;
-    console.log('File ' + filename + ' written');
-    if(!noAdd) {
-      addCode(path, message, filename, justAdd);
+    console.log('File ' + scriptData.filename + ' written');
+    if(!scriptData.no_add) {
+      addCode(scriptData);
+      // addCode(path, message, filename, justAdd);
     }
   });
 }
@@ -48,8 +51,9 @@ program
   .option('-n, --no_add', 'refrain from running git add')
   .action(function(downloadName) {
     let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
-    let { pathArray, message, filename, allCode} = scriptData;
-    let fullPath = makeCodeDir(repo, pathArray);
-    writeCodeFile(fullPath, message, filename, allCode, program.no_add, program.add);
+    // let { pathArray, message, filename, allCode} = scriptData;
+    scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
+    writeCodeFile(scriptData);
+    // writeCodeFile(fullPath, message, filename, allCode, program.no_add, program.add);
   })
   .parse(process.argv);
