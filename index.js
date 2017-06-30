@@ -35,9 +35,6 @@ const writeCodeFile = function(scriptData, callback) {
     if(err) throw err;
     console.log('File ' + scriptData.filename + ' written');
     callback();
-    // if(!scriptData.no_add) {
-    //   addCode(scriptData);
-    // }
   });
 }
 
