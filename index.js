@@ -53,8 +53,6 @@ program
   .option('-n, --no_add', 'refrain from running git add')
   .action(function(downloadName) {
     const scriptData = getScriptData(downloadName);
-    // let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
-    // scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
     writeCodeFile(scriptData, function() {
       if(!scriptData.no_add) {
         addCode(scriptData, commitCode);
