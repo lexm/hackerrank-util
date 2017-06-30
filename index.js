@@ -39,6 +39,12 @@ const writeCodeFile = function(scriptData, callback) {
   });
 }
 
+const getScriptData = function(downloadName) {
+  let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
+  scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
+  return scriptData;
+}
+
 program
   .version('0.0.1')
   .arguments('<downloadName>')
@@ -46,8 +52,9 @@ program
   .option('-c, --commit', 'add and commit solution with git (default)')
   .option('-n, --no_add', 'refrain from running git add')
   .action(function(downloadName) {
-    let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
-    scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
+    const scriptData = getScriptData(downloadName);
+    // let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
+    // scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
     writeCodeFile(scriptData, function() {
       if(!scriptData.no_add) {
         addCode(scriptData, commitCode);
