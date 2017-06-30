@@ -7,6 +7,29 @@ const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 const makeCodeDir = require(__dirname + '/lib/makedir').makeCodeDir;
 const fillPath = require(__dirname + '/lib/fillpath').fillPath;
 
+const commitCode = function(path, message) {
+  exec('cd ' + path + ';git commit -m "' + message + '"', function(error) {
+    if(error) {
+      console.error(error)
+    } else {
+      console.log('committed: ' + message);
+    }
+  });
+}
+
+const addCode = function(path, message, source, no_commit) {
+  exec('cd ' + path + ';git add ' + source, function(error) {
+    if(error) {
+      console.error(error);
+    } else {
+      console.log('added: ' + source);
+      if(!no_commit) {
+        commitCode(path, message);
+      }
+    }
+  });
+}
+
 program
   .version('0.0.1')
   .arguments('<downloadName>')
@@ -21,14 +44,7 @@ program
       if(err) throw err;
       console.log('File ' + filename + ' written');
       if(!program.no_add) {
-        exec('cd ' + fullPath + ';git add ' + filename, function(error) {
-          if(error) console.error(error);
-          if(!program.add) {
-            exec('cd ' + fullPath + ';git commit -m "' + message + '"', function(error) {
-              if(error) console.error(error);
-            });
-          }
-        });
+        addCode(fullPath, message, filename, program.add);
       }
     });
   })
