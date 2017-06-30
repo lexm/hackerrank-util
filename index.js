@@ -19,10 +19,13 @@ const commitCode = function(path, message) {
 
 const addCode = function(path, message, source, no_commit) {
   exec('cd ' + path + ';git add ' + source, function(error) {
-    if(error) console.error(error);
-    console.log('added: ' + source);
-    if(!no_commit) {
-      commitCode(path, message);
+    if(error) {
+      console.error(error);
+    } else {
+      console.log('added: ' + source);
+      if(!no_commit) {
+        commitCode(path, message);
+      }
     }
   });
 }
