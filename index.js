@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 const program = require('commander');
-const fs = require('fs');
-const exec = require('child_process').exec;
-const home = process.env.HOME;
-const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
-const makeCodeDir = require(__dirname + '/lib/makedir').makeCodeDir;
-const fillPath = require(__dirname + '/lib/fillpath').fillPath;
-const {commitCode, addCode, writeCodeFile, getScriptData} = require(__dirname + '/lib/addcode')
+// const fs = require('fs');
+// const exec = require('child_process').exec;
+// const home = process.env.HOME;
+// const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
+// const makeCodeDir = require(__dirname + '/lib/makedir').makeCodeDir;
+// const fillPath = require(__dirname + '/lib/fillpath').fillPath;
+const {
+  commitCode,
+  addCode,
+  writeCodeFile,
+  getScriptData
+} = require(__dirname + '/lib/addcode')
 
 // const commitCode = function(path, message) {
 //   exec('cd ' + path + ';git commit -m "' + message + '"', function(error) {
