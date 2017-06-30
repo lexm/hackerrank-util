@@ -51,12 +51,5 @@ program
     let { pathArray, message, filename, allCode} = scriptData;
     let fullPath = makeCodeDir(repo, pathArray);
     writeCodeFile(fullPath, message, filename, allCode, program.no_add, program.add);
-    // fs.writeFile(fullPath + filename, allCode, function(err){
-    //   if(err) throw err;
-    //   console.log('File ' + filename + ' written');
-    //   if(!program.no_add) {
-    //     addCode(fullPath, message, filename, program.add);
-    //   }
-    // });
   })
   .parse(process.argv);
