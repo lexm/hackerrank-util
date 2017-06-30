@@ -17,14 +17,15 @@ const commitCode = function(path, message) {
   });
 }
 
-const addCode = function(scriptData) {
+const addCode = function(scriptData, callback) {
   exec('cd ' + scriptData.fullPath + ';git add ' + scriptData.filename, function(error) {
     if(error) {
       console.error(error);
     } else {
       console.log('added: ' + scriptData.filename);
       if(!scriptData.add) {
-        commitCode(scriptData.fullPath, scriptData.message);
+        callback(scriptData.fullPath, scriptData.message)
+        // commitCode(scriptData.fullPath, scriptData.message);
       }
     }
   });
@@ -49,7 +50,7 @@ program
     scriptData.fullPath = makeCodeDir(repo, scriptData.pathArray);
     writeCodeFile(scriptData, function() {
       if(!scriptData.no_add) {
-        addCode(scriptData);
+        addCode(scriptData, commitCode);
       }
     });
   })
