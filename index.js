@@ -25,7 +25,6 @@ const addCode = function(scriptData, callback) {
       console.log('added: ' + scriptData.filename);
       if(!scriptData.add) {
         callback(scriptData.fullPath, scriptData.message)
-        // commitCode(scriptData.fullPath, scriptData.message);
       }
     }
   });
