@@ -30,6 +30,16 @@ const addCode = function(path, message, source, no_commit) {
   });
 }
 
+const writeCodeFile = function(path, message, filename, allCode, noAdd, justAdd) {
+  fs.writeFile(path + filename, allCode, function(err){
+    if(err) throw err;
+    console.log('File ' + filename + ' written');
+    if(!noAdd) {
+      addCode(path, message, filename, justAdd);
+    }
+  });
+}
+
 program
   .version('0.0.1')
   .arguments('<downloadName>')
@@ -40,12 +50,6 @@ program
     let scriptData = JSON.parse(fs.readFileSync(fillPath(downloadName), 'utf8'));
     let { pathArray, message, filename, allCode} = scriptData;
     let fullPath = makeCodeDir(repo, pathArray);
-    fs.writeFile(fullPath + filename, allCode, function(err){
-      if(err) throw err;
-      console.log('File ' + filename + ' written');
-      if(!program.no_add) {
-        addCode(fullPath, message, filename, program.add);
-      }
-    });
+    writeCodeFile(fullPath, message, filename, allCode, program.no_add, program.add);
   })
   .parse(process.argv);
