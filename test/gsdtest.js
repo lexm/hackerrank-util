@@ -41,6 +41,6 @@ describe('getScriptData', function() {
         getScriptData('downloads/file01.json');
       }).to.throw('Unexpected token');
       done();
-    })
+    });
   });
 });
