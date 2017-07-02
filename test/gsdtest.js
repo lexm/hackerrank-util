@@ -27,9 +27,13 @@ describe('getScriptData', function() {
     mock.restore();
     done();
   });
-  describe('when download file does not exist', function(done) {
-    expect(getScriptData('downloads/file00.json')).to.throw();
-    console.log('thrown');
-    done();
+  describe('when download file does not exist', function() {
+    it('should throw an error', function(done) {
+      expect(function() {
+        getScriptData('downloads/file00.json');
+      }).to.throw();
+      console.log('thrown');
+      done();
+    });
   });
 });
