@@ -31,8 +31,7 @@ describe('getScriptData', function() {
     it('should throw an error', function(done) {
       expect(function() {
         getScriptData('downloads/file00.json');
-      }).to.throw();
-      console.log('thrown');
+      }).to.throw('ENOENT');
       done();
     });
   });
