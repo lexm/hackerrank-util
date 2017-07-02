@@ -28,7 +28,7 @@ describe('getScriptData', function() {
     done();
   });
   describe('when download file does not exist', function() {
-    it('should throw an error', function(done) {
+    it('should throw an ENOENT error', function(done) {
       expect(function() {
         getScriptData('downloads/file00.json');
       }).to.throw('ENOENT');
