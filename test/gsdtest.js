@@ -9,9 +9,9 @@ const mock = require('mock-fs');
 describe('getScriptData', function() {
   before(function(done) {
     mock({
-      'file01.json': 'I am not a JSON file!',
-      'file02.json': '{"name": "unknown field","pi": 3.14, "not_hyk": true}',
       'downloads': {
+        'file01.json': 'I am not a JSON file!',
+        'file02.json': '{"name": "unknown field","pi": 3.14, "not_hyk": true}',
         'file03.json': '{"progName":"Compute the Average",' +
         '"pathArray":["Linux_Shell","Bash"],' +
         '"message":"Solution to Linux Shell > Bash > Compute the Average",' +
@@ -35,5 +35,10 @@ describe('getScriptData', function() {
       done();
     });
   });
-  describe('when download file is')
+  describe('when download file is not JSON', function() {
+    it('should throw an error', function(done) {
+      getScriptData('downloads/file01.json');
+      done();
+    })
+  });
 });
