@@ -39,7 +39,7 @@ describe('getScriptData', function() {
     it('should throw an error', function(done) {
       expect(function() {
         getScriptData('downloads/file01.json');
-      }).to.throw();
+      }).to.throw('SyntaxError');
       done();
     })
   });
