@@ -3,7 +3,7 @@
 const fs = require('fs');
 const expect = require('chai').expect;
 const addCode = require(__dirname + '/../lib/addcode.js');
-const makeCodeDir = addCode.getScriptData;
+const getScriptData = addCode.getScriptData;
 const mock = require('mock-fs');
 
 describe('getScriptData', function() {
@@ -26,5 +26,10 @@ describe('getScriptData', function() {
   after(function(done) {
     mock.restore();
     done();
-  })
+  });
+  describe('when download file does not exist', function(done) {
+    let scriptData = getScriptData('downloads/file00.json');
+    console.log(scriptData);
+    done();
+  });
 });
