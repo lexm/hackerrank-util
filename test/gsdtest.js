@@ -37,7 +37,9 @@ describe('getScriptData', function() {
   });
   describe('when download file is not JSON', function() {
     it('should throw an error', function(done) {
-      getScriptData('downloads/file01.json');
+      expect(function() {
+        getScriptData('downloads/file01.json');
+      }).to.throw();
       done();
     })
   });
