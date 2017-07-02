@@ -28,8 +28,8 @@ describe('getScriptData', function() {
     done();
   });
   describe('when download file does not exist', function(done) {
-    let scriptData = getScriptData('downloads/file00.json');
-    console.log(scriptData);
+    expect(getScriptData('downloads/file00.json')).to.throw();
+    console.log('thrown');
     done();
   });
 });
