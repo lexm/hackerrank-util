@@ -69,13 +69,17 @@ describe('getScriptData', function() {
       });
       it('should have correct type/value for scriptData.pathArray', function(done) {
         expect(scriptData.pathArray).to.be.an.instanceOf(Array);
-        expect(scriptData.pathArray.length).to.equal(2);
-        expect(scriptData.pathArray[0]).to.equal('Linux_Shell');
-        expect(scriptData.pathArray[1]).to.equal('Bash');
+        expect(scriptData.pathArray.length).to.equal(0);
+        // expect(scriptData.pathArray.length).to.equal(2);
+        // expect(scriptData.pathArray[0]).to.equal('Linux_Shell');
+        // expect(scriptData.pathArray[1]).to.equal('Bash');
         done();
       });
-      // it('should have correct type/value for scriptData.progName', function(done) {
-      // });
+      it('should have correct type/value for scriptData.message', function(done) {
+        expect(scriptData.message).to.be.a('string');
+        expect(scriptData.message).to.equal('Solution to Linux Shell > Bash > Compute the Average');
+        done();
+      });
       // it('should have correct type/value for scriptData.progName', function(done) {
       // });
       // it('should have correct type/value for scriptData.progName', function(done) {
