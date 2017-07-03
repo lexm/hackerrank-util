@@ -43,4 +43,12 @@ describe('getScriptData', function() {
       done();
     });
   });
+  describe('when download file is incorrect JSON', function() {
+    it('should throw an error', function(done) {
+      expect(function() {
+        getScriptData('downloads/file02.json');
+      }).to.throw();
+      done();
+    });
+  });
 });
