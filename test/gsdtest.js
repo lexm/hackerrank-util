@@ -52,8 +52,8 @@ describe('getScriptData', function() {
     });
   });
   describe('when download file is correct JSON', function() {
+    let scriptData;
     it('should not throw an error', function(done) {
-      let scriptData;
       expect(function() {
         scriptData = getScriptData('downloads/file03.json');
       }).to.not.throw();
