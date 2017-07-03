@@ -90,6 +90,11 @@ describe('getScriptData', function() {
         expect(scriptData.allCode).to.equal('read N\nTOTAL=0\nCOUNT=$N\nwhile [ $COUNT -gt 0 ]; do\n  read INT\n  let TOTAL+=$INT\n  let COUNT-=1\ndone\nprintf \"%.3f\\n\" $(echo \" $TOTAL / $N \" | bc -l)\n');
         done();
       });
+      it('should have correct type/value for scriptData.fullPath', function(done) {
+        expect(scriptData.fullPath).to.be.a('string');
+        expect(scriptData.fullPath).to.equal(repo + 'Linux_Shell/Bash/');
+        done();
+      });
     });
   });
 });
