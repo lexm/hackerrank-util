@@ -59,7 +59,7 @@ describe('getScriptData', function() {
       }).to.not.throw();
       done();
     });
-    it('should have a correct value for progName', function(done) {
+    it('should have a correct values for scriptData', function(done) {
       expect(scriptData.progName).to.equal('Compute the Average');
       done();
     })
