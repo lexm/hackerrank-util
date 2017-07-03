@@ -82,7 +82,7 @@ describe('getScriptData', function() {
       });
       it('should have correct type/value for scriptData.filename', function(done) {
         expect(scriptData.filename).to.be.a('string');
-        expect(scriptData.filename).to.equal('Solution to Linux Shell > Bash > Compute the Average');
+        expect(scriptData.filename).to.equal('bash-tutorials---compute-the-average.sh');
         done();
       });
       it('should have correct type/value for scriptData.allCode', function(done) {
