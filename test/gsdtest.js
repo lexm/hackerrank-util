@@ -60,6 +60,7 @@ describe('getScriptData', function() {
       done();
     });
     it('should have a correct values for scriptData', function(done) {
+      expect(scriptData.progName).to.be.a('string');
       expect(scriptData.progName).to.equal('Compute the Average');
       expect(scriptData.pathArray).to.be.an.instanceOf(Array);
       done();
