@@ -80,10 +80,16 @@ describe('getScriptData', function() {
         expect(scriptData.message).to.equal('Solution to Linux Shell > Bash > Compute the Average');
         done();
       });
-      // it('should have correct type/value for scriptData.progName', function(done) {
-      // });
-      // it('should have correct type/value for scriptData.progName', function(done) {
-      // });
+      it('should have correct type/value for scriptData.filename', function(done) {
+        expect(scriptData.filename).to.be.a('string');
+        expect(scriptData.filename).to.equal('Solution to Linux Shell > Bash > Compute the Average');
+        done();
+      });
+      it('should have correct type/value for scriptData.allCode', function(done) {
+        expect(scriptData.allCode).to.be.a('string');
+        expect(scriptData.allCode).to.equal('read N\nTOTAL=0\nCOUNT=$N\nwhile [ $COUNT -gt 0 ]; do\n  read INT\n  let TOTAL+=$INT\n  let COUNT-=1\ndone\nprintf \"%.3f\\n\" $(echo \" $TOTAL / $N \" | bc -l)\n');
+        done();
+      });
     });
   });
 });
