@@ -5,6 +5,8 @@ const expect = require('chai').expect;
 const addCode = require(__dirname + '/../lib/addcode.js');
 const getScriptData = addCode.getScriptData;
 const mock = require('mock-fs');
+const home = process.env.HOME;
+const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 
 const file03Data = {
   "progName": "Compute the Average",
@@ -68,8 +70,6 @@ describe('getScriptData', function() {
         done();
       });
       it('should have correct type/value for scriptData.pathArray', function(done) {
-        // expect(scriptData.pathArray).to.be.an.instanceOf(Array);
-        // expect(scriptData.pathArray.length).to.equal(0);
         expect(scriptData.pathArray.length).to.equal(2);
         expect(scriptData.pathArray[0]).to.equal('Linux_Shell');
         expect(scriptData.pathArray[1]).to.equal('Bash');
