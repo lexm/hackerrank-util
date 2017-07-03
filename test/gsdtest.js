@@ -5,6 +5,12 @@ const expect = require('chai').expect;
 const addCode = require(__dirname + '/../lib/addcode.js');
 const getScriptData = addCode.getScriptData;
 const mock = require('mock-fs');
+const file03Data = {
+  "progName":"Compute the Average",
+  "pathArray":["Linux_Shell","Bash"],
+  "message":"Solution to Linux Shell > Bash > Compute the Average",
+  "filename":"bash-tutorials---compute-the-average.sh",
+  "allCode":"read N\nTOTAL=0\nCOUNT=$N\nwhile [ $COUNT -gt 0 ]; do\n  read INT\n  let TOTAL+=$INT\n  let COUNT-=1\ndone\nprintf \"%.3f\\n\" $(echo \" $TOTAL / $N \" | bc -l)\n"}
 
 describe('getScriptData', function() {
   before(function(done) {
@@ -12,13 +18,7 @@ describe('getScriptData', function() {
       'downloads': {
         'file01.json': 'I am not a JSON file!',
         'file02.json': '{"name": "unknown field","pi": 3.14, "not_hyk": true}',
-        'file03.json': '{"progName":"Compute the Average",' +
-        '"pathArray":["Linux_Shell","Bash"],' +
-        '"message":"Solution to Linux Shell > Bash > Compute the Average",' +
-        '"filename":"bash-tutorials---compute-the-average.sh",' +
-        '"allCode":"read N\nTOTAL=0\nCOUNT=$N\nwhile [ $COUNT -gt 0 ];' +
-        ' do\n  read INT\n  let TOTAL+=$INT\n  let COUNT-=1\ndone\n' +
-        'printf \"%.3f\\n\" $(echo \" $TOTAL / $N \" | bc -l)\n"}'
+        'file03.json': JSON.stringify(file03Data)
       }
     });
     done();
@@ -40,6 +40,23 @@ describe('getScriptData', function() {
       expect(function() {
         getScriptData('downloads/file01.json');
       }).to.throw('Unexpected token');
+      done();
+    });
+  });
+  describe('when download file is incorrect JSON', function() {
+    it('should throw an error', function(done) {
+      expect(function() {
+        getScriptData('downloads/file02.json');
+      }).to.throw();
+      done();
+    });
+  });
+  describe('when download file is correct JSON', function() {
+    it('should not throw an error', function(done) {
+      let scriptData;
+      expect(function() {
+        scriptData = getScriptData('downloads/file03.json');
+      }).to.not.throw();
       done();
     });
   });
