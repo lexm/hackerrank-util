@@ -49,6 +49,8 @@ describe('writeCodeFile', function() {
           // });
         });
       }).to.not.throw();
-    })
+      done();
+    });
+
   });
 });
