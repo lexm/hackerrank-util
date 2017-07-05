@@ -46,7 +46,8 @@ describe('writeCodeFile', function() {
       });
     });
     it('should have created the file', function(done) {
-      fs.access('./repo/Linux_Shell/bash-tutorials---compute-the-average.sh', function(err) {
+      fs.access('./repo/Linux_Shell/Bash/bash-tutorials---compute-the-average.sh', function(err) {
+        console.error(err)
         expect(err).to.be.null;
         done();
       });
