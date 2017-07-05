@@ -5,8 +5,7 @@ const expect = require('chai').expect;
 const addCode = require(__dirname + '/../lib/addcode.js');
 const writeCodeFile = addCode.writeCodeFile;
 const mock = require('mock-fs');
-const home = process.env.HOME;
-const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
+const repo = './repo/'
 
 const testData01 = {
   "progName": "Compute the Average",
@@ -27,5 +26,15 @@ describe('writeCodeFile', function() {
   after(function(done) {
     mock.restore();
     done();
+  });
+  describe('given test data #1', function(done) {
+    writeCodeFile(testData01, function() {
+      it('should have create the first-level subdirectory', function() {
+        fs.access('./repo/Linux_Shell/', function(err) {
+          expect(err).to.be.null;
+          done();
+        })
+      })
+    })
   });
 });
