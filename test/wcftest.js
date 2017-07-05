@@ -5,6 +5,8 @@ const expect = require('chai').expect;
 const addCode = require(__dirname + '/../lib/addcode.js');
 const writeCodeFile = addCode.writeCodeFile;
 const mock = require('mock-fs');
+const home = process.env.HOME;
+const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 
 const testData01 = {
   "progName": "Compute the Average",
