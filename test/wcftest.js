@@ -48,7 +48,6 @@ describe('writeCodeFile', function() {
     it('should have correct data in the file', function(done) {
       fs.readFile('./repo/Linux_Shell/Bash/bash-tutorials---compute-the-average.sh', 'utf8', function(err, data) {
         expect(err).to.be.null;
-        console.log('data: ', data);
         expect(data).to.equal(testData01.allCode);
         done();
       })
