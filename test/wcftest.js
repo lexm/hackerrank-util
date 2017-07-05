@@ -46,6 +46,8 @@ describe('writeCodeFile', function() {
         done();
       });
     });
+    it('should have correct data in the file', function(done) {
 
+    });
   });
 });
