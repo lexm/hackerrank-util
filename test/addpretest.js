@@ -7,25 +7,32 @@ const addPrefix = addCode.addPrefix;
 const baseMsg = 'Linux Shell > Bash > Compute the Average';
 
 describe('addPrefix', function() {
-  it('should add "Solution to " when no second parameter', function() {
+  it('should add "Solution to " when no second parameter', function(done) {
     expect(addPrefix(baseMsg).to.equal('Solution to Linux Shell > Bash > Compute the Average'));
+    done();
   });
-  it('should add "Solution to " when second parameter is 0', function() {
+  it('should add "Solution to " when second parameter is 0', function(done) {
     expect(addPrefix(baseMsg, 0).to.equal('Solution to Linux Shell > Bash > Compute the Average'));
+    done();
   });
-  it('should add "Attempt 1: " when second parameter is 1', function() {
+  it('should add "Attempt 1: " when second parameter is 1', function(done) {
     expect(addPrefix(baseMsg, 0).to.equal('Attempt 1: Linux Shell > Bash > Compute the Average'));
+    done();
   });
-  it('should add "Attempt 1: " when second parameter is 2', function() {
+  it('should add "Attempt 1: " when second parameter is 2', function(done) {
     expect(addPrefix(baseMsg, 0).to.equal('Attempt 2: Linux Shell > Bash > Compute the Average'));
+    done();
   });
-  it('should add "Attempt 1: " when second parameter is 3', function() {
+  it('should add "Attempt 1: " when second parameter is 3', function(done) {
     expect(addPrefix(baseMsg, 0).to.equal('Attempt 3: Linux Shell > Bash > Compute the Average'));
+    done();
   });
-  it('should add "Attempt 1: " when second parameter is 4', function() {
+  it('should add "Attempt 1: " when second parameter is 4', function(done) {
     expect(addPrefix(baseMsg, 0).to.equal('Attempt 4: Linux Shell > Bash > Compute the Average'));
+    done();
   });
-  it('should add "Attempt 1: " when second parameter is 5', function() {
+  it('should add "Attempt 1: " when second parameter is 5', function(done) {
     expect(addPrefix(baseMsg, 0).to.equal('Attempt 5: Linux Shell > Bash > Compute the Average'));
+    done();
   });
 })
