@@ -16,23 +16,23 @@ describe('addPrefix', function() {
     done();
   });
   it('should add "Attempt 1: " when second parameter is 1', function(done) {
-    expect(addPrefix(baseMsg, 0)).to.equal('Attempt 1: Linux Shell > Bash > Compute the Average');
+    expect(addPrefix(baseMsg, 1)).to.equal('Attempt 1: Linux Shell > Bash > Compute the Average');
     done();
   });
-  it('should add "Attempt 1: " when second parameter is 2', function(done) {
-    expect(addPrefix(baseMsg, 0)).to.equal('Attempt 2: Linux Shell > Bash > Compute the Average');
+  it('should add "Attempt 2: " when second parameter is 2', function(done) {
+    expect(addPrefix(baseMsg, 2)).to.equal('Attempt 2: Linux Shell > Bash > Compute the Average');
     done();
   });
-  it('should add "Attempt 1: " when second parameter is 3', function(done) {
-    expect(addPrefix(baseMsg, 0)).to.equal('Attempt 3: Linux Shell > Bash > Compute the Average');
+  it('should add "Attempt 3: " when second parameter is 3', function(done) {
+    expect(addPrefix(baseMsg, 3)).to.equal('Attempt 3: Linux Shell > Bash > Compute the Average');
     done();
   });
-  it('should add "Attempt 1: " when second parameter is 4', function(done) {
-    expect(addPrefix(baseMsg, 0)).to.equal('Attempt 4: Linux Shell > Bash > Compute the Average');
+  it('should add "Attempt 4: " when second parameter is 4', function(done) {
+    expect(addPrefix(baseMsg, 4)).to.equal('Attempt 4: Linux Shell > Bash > Compute the Average');
     done();
   });
-  it('should add "Attempt 1: " when second parameter is 5', function(done) {
-    expect(addPrefix(baseMsg, 0)).to.equal('Attempt 5: Linux Shell > Bash > Compute the Average');
+  it('should add "Attempt 5: " when second parameter is 5', function(done) {
+    expect(addPrefix(baseMsg, 5)).to.equal('Attempt 5: Linux Shell > Bash > Compute the Average');
     done();
   });
 })
