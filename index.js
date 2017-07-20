@@ -17,18 +17,14 @@ program
   .action(function(downloadName) {
     try {
       const scriptData = getScriptData(downloadName, program.try);
+      writeCodeFile(scriptData, function() {
+        if(!scriptData.no_add) {
+          addCode(scriptData, commitCode);
+        }
+      });
     }
     catch(e) {
       console.error(e)
-    }
-    finally {
-      if(!e) {
-        writeCodeFile(scriptData, function() {
-          if(!scriptData.no_add) {
-            addCode(scriptData, commitCode);
-          }
-        });
-      }
     }
   })
   .parse(process.argv);
