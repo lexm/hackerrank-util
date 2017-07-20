@@ -15,11 +15,20 @@ program
   .option('-n, --no_add', 'refrain from running git add')
   .option('-t, --try <n>', 'attempt <number>', parseInt)
   .action(function(downloadName) {
-    const scriptData = getScriptData(downloadName, program.try);
-    writeCodeFile(scriptData, function() {
-      if(!scriptData.no_add) {
-        addCode(scriptData, commitCode);
+    try {
+      const scriptData = getScriptData(downloadName, program.try);
+      writeCodeFile(scriptData, function() {
+        if(!scriptData.no_add) {
+          addCode(scriptData, commitCode);
+        }
+      });
+    }
+    catch(e) {
+      if(e.code === 'ENOENT') {
+        console.log('file ' + downloadName + ' not found');
+      } else {
+        console.error(e);
       }
-    });
-  })
+    }
+  });
   .parse(process.argv);
