@@ -13,8 +13,9 @@ program
   .option('-a, --add', 'add solution to git without performing commit')
   .option('-c, --commit', 'add and commit solution with git (default)')
   .option('-n, --no_add', 'refrain from running git add')
+  .option('-t, --try <n>', 'attempt <number>', parseInt)
   .action(function(downloadName) {
-    const scriptData = getScriptData(downloadName);
+    const scriptData = getScriptData(downloadName, program.try);
     writeCodeFile(scriptData, function() {
       if(!scriptData.no_add) {
         addCode(scriptData, commitCode);
