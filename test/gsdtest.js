@@ -8,7 +8,7 @@ const mock = require('mock-fs');
 const home = process.env.HOME;
 const repo = process.env.HACKERRANK_REPO || home + '/hackerrank-code/';
 
-const file03Data = {
+const fileData = {
   "progName": "Compute the Average",
   "pathArray": [ 'Linux_Shell', 'Bash' ],
   "message": "Linux Shell > Bash > Compute the Average",
@@ -22,7 +22,8 @@ describe('getScriptData', function() {
       'downloads': {
         'file01.json': 'I am not a JSON file!',
         'file02.json': '{"name": "unknown field","pi": 3.14, "not_hyk": true}',
-        'file03.json': JSON.stringify(file03Data)
+        'file03.json': JSON.stringify(fileData),
+        'file04.json': JSON.stringify(fileData)
       }
     });
     done();
@@ -93,6 +94,22 @@ describe('getScriptData', function() {
       it('should have correct type/value for scriptData.fullPath', function(done) {
         expect(scriptData.fullPath).to.be.a('string');
         expect(scriptData.fullPath).to.equal(repo + 'Linux_Shell/Bash/');
+        done();
+      });
+    });
+  });
+  describe('when download file is correct JSON and parameter is 1', function() {
+    let scriptData;
+    it('should not throw an error', function(done) {
+      expect(function() {
+        scriptData = getScriptData('downloads/file04.json', 1);
+      }).to.not.throw();
+      done();
+    });
+    describe('scriptData', function() {
+      it('should have correct type/value for scriptData.fullMessage', function(done) {
+        expect(scriptData.fullMessage).to.be.a('string');
+        expect(scriptData.fullMessage).to.equal('Attempt 1: Linux Shell > Bash > Compute the Average');
         done();
       });
     });
