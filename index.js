@@ -24,7 +24,11 @@ program
       });
     }
     catch(e) {
-      console.error(e)
+      if(e.code === 'ENOENT') {
+        console.log('file ' + downloadName + ' not found');
+      } else {
+        console.error(e);
+      }
     }
-  })
+  });
   .parse(process.argv);
