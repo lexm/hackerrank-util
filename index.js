@@ -6,6 +6,7 @@ const {
   writeCodeFile,
   getScriptData
 } = require(__dirname + '/lib/addcode')
+var tryNum;
 
 program
   .version('0.0.1')
@@ -15,7 +16,12 @@ program
   .option('-n, --no_add', 'refrain from running git add')
   .option('-t, --try <trynum>', 'attempt <number>')
   .action(function(downloadName) {
-    const scriptData = getScriptData(downloadName, program.trynum);
+    if(program.try) {
+      tryNum = program.trynum;
+    } else {
+      tryNum = 0
+    }
+    const scriptData = getScriptData(downloadName, tryNum);
     writeCodeFile(scriptData, function() {
       if(!scriptData.no_add) {
         addCode(scriptData, commitCode);
