@@ -30,5 +30,5 @@ program
         console.error(e);
       }
     }
-  });
+  })
   .parse(process.argv);
